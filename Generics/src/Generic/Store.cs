@@ -2,37 +2,30 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Generic
+namespace GenericsStore
 {
     public class Store<T> where T : IHasId
     {
-        public List<T> items { get; set; } = new List<T>();
+        public Dictionary<int, T> items { get; set; } = new Dictionary<int, T>();
 
         public void Add(T item)
         {
-            items.Add(item);
+            items.Add(item.Id,item);
         }
 
         public T GetById(int id)
         {
-            foreach (T item in items)
-            {
-                if (id == item.Id)
-                    return item;
-            }
-
-            return default;
+            items.TryGetValue(id, out T result);
+            return result;
         }
 
-        public List<T> GetAll() => items;
+        public Dictionary<int, T> GetAll() => items;
 
         public void Remove(int id)
         {
-            T item = GetById(id);
-            if (item != null)
-            {
-                items.Remove(item);
-            }
+            items.Remove(id);
         }
+
+
     }
 }
