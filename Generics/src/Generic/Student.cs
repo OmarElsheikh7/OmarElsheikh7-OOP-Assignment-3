@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Generic
 {
-    public class Student
+    public class Student : IHasId
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public string name { get; set; }
     }
 }

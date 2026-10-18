@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Generic
 {
-    public class Store<T>
+    public class Store<T> where T : IHasId
     {
-        public List<T> items { get; set; }
+        public List<T> items { get; set; } = new List<T>();
 
         public void Add(T item)
         {
@@ -21,7 +21,7 @@ namespace Generic
                     return item;
             }
 
-            return null;
+            return default;
         }
 
         public List<T> GetAll() => items;
